@@ -10,6 +10,8 @@ else ifeq ($(ARCH), armv7l)
 	ARCH = armv7
 else ifeq ($(ARCH), aarch64)
 	ARCH = armv8
+else ifeq ($(ARCH), ppc64le)
+	ARCH = ppc64
 endif
 
 CFLAGS_ARCH  =-Ddisplay=display_$(ARCH) -Dgen_elf=gen_elf_$(ARCH) -Dptrace_reset=ptrace_reset_$(ARCH) -Ddump_state=dump_state_$(ARCH) \
@@ -24,6 +26,8 @@ CFLAGS_armv7 = -Dassemble=assemble_armv7 \
 		-DREGFMT=REGFMT32 -DARCH_INIT_PROC_INFO=ARMV7_INIT_PROC_INFO
 CFLAGS_armv8 = -Dassemble=assemble_armv8 \
 		-DREGFMT=REGFMT64 -DARCH_INIT_PROC_INFO=ARMV8_INIT_PROC_INFO
+CFLAGS_ppc64 = -Dassemble=assemble_ppc64 \
+		-DREGFMT=REGFMT64 -DARCH_INIT_PROC_INFO=PPC64_INIT_PROC_INFO
 
 CFLAGS = -std=c11 -Wall -pedantic -Wno-gnu-empty-initializer $(CFLAGS_ARCH) $(CFLAGS_$(ARCH)) -O2 -fPIE -D_FORTIFY_SOURCE=2
 LDFLAGS =

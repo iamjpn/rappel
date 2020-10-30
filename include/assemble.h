@@ -13,3 +13,10 @@ size_t assemble_arm(
 		const size_t,
 		const char *const,
 		const size_t);
+
+const
+size_t assemble_ppc64(
+		uint8_t *const,
+		const size_t,
+		const char *const,
+		const size_t);
